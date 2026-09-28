@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071a12">
+    <title>iPhone 18</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- HOME -->
+    <section id="homePage" class="page active">
+        <div class="brand">
+            <div class="brand-icon">18</div>
+            <h1>iPhone 18</h1>
+            <p>Secure Account Portal</p>
+        </div>
+
+        <div class="choice-card">
+            <h2>Welcome</h2>
+            <p class="muted">Choose your account type to continue.</p>
+
+            <button class="primary-btn" onclick="showPage('userLoginPage')">
+                👤 User
+            </button>
+
+            <button class="secondary-btn" onclick="showPage('adminLoginPage')">
+                🔐 Admin
+            </button>
+        </div>
+    </section>
+
+
+    <!-- USER LOGIN -->
+    <section id="userLoginPage" class="page">
+        <div class="auth-card">
+            <button class="back-btn" onclick="showPage('homePage')">← Back</button>
+
+            <div class="small-logo">18</div>
+            <h2>User Login</h2>
+            <p class="muted">Sign in to your account.</p>
+
+            <form id="userLoginForm">
+                <label>Email</label>
+                <input id="loginEmail" type="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input id="loginPassword" type="password" placeholder="Enter your password" required>
+
+                <button class="primary-btn" type="submit">
+                    Login
+                </button>
+            </form>
+
+            <p id="loginMessage" class="message"></p>
+
+            <p class="switch-text">
+                Don't have an account?
+                <button class="link-btn" onclick="showPage('registerPage')">
+                    Register
+                </button>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- USER REGISTER -->
+    <section id="registerPage" class="page">
+        <div class="auth-card">
+            <button class="back-btn" onclick="showPage('userLoginPage')">← Back</button>
+
+            <div class="small-logo">18</div>
+            <h2>Create Account</h2>
+            <p class="muted">Create your user account.</p>
+
+            <form id="registerForm">
+                <label>Full Name</label>
+                <input id="registerName" type="text" placeholder="Enter your name" required>
+
+                <label>Email</label>
+                <input id="registerEmail" type="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input id="registerPassword" type="password" placeholder="Minimum 6 characters" minlength="6" required>
+
+                <button class="primary-btn" type="submit">
+                    Create Account
+                </button>
+            </form>
+
+            <p id="registerMessage" class="message"></p>
+
+            <p class="switch-text">
+                Already have an account?
+                <button class="link-btn" onclick="showPage('userLoginPage')">
+                    Login
+                </button>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ADMIN LOGIN -->
+    <section id="adminLoginPage" class="page">
+        <div class="auth-card admin-card">
+            <button class="back-btn" onclick="showPage('homePage')">← Back</button>
+
+            <div class="admin-logo">🔐</div>
+
+            <h2>Admin Login</h2>
+            <p class="muted">Authorized administrators only.</p>
+
+            <form id="adminLoginForm">
+                <label>Admin Email</label>
+                <input id="adminEmail" type="email" placeholder="Admin email" required>
+
+                <label>Password</label>
+                <input id="adminPassword" type="password" placeholder="Admin password" required>
+
+                <button class="admin-btn" type="submit">
+                    Admin Login
+                </button>
+            </form>
+
+            <p id="adminMessage" class="message"></p>
+        </div>
+    </section>
+
+
+    <!-- USER DASHBOARD -->
+    <section id="userDashboard" class="page dashboard-page">
+
+        <header class="topbar">
+            <div>
+                <div class="mini-brand">iPhone 18</div>
+                <span class="dashboard-label">User Dashboard</span>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+        </header>
+
+        <main class="dashboard-content">
+
+            <div class="welcome-box">
+                <span>Welcome back</span>
+                <h2 id="userName">User</h2>
+                <p id="userEmail"></p>
+            </div>
+
+            <div class="status-card">
+                <span class="status-dot"></span>
+                Account Active
+            </div>
+
+            <div class="dashboard-grid">
+
+                <div class="dashboard-card">
+                    <span class="card-icon">👤</span>
+                    <h3>Profile</h3>
+                    <p>View your account information.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <span class="card-icon">📊</span>
+                    <h3>Activity</h3>
+                    <p>Your account activity will appear here.</p>
+                </div>
+
+                <div class="dashboard-card disabled-card">
+                    <span class="card-icon">💳</span>
+                    <h3>Deposits</h3>
+                    <p>Coming in V2.</p>
+                </div>
+
+                <div class="dashboard-card disabled-card">
+                    <span class="card-icon">💰</span>
+                    <h3>Withdrawals</h3>
+                    <p>Coming in V6.</p>
+                </div>
+
+            </div>
+
+        </main>
+    </section>
+
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="adminDashboard" class="page dashboard-page">
+
+        <header class="topbar admin-topbar">
+            <div>
+                <div class="mini-brand">iPhone 18</div>
+                <span class="dashboard-label">Admin Control Panel</span>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+        </header>
+
+        <main class="dashboard-content">
+
+            <div class="admin-welcome">
+                <span>Administrator</span>
+                <h2>Control Panel</h2>
+                <p id="adminEmailDisplay"></p>
+            </div>
+
+            <div class="admin-grid">
+
+                <div class="admin-card-box">
+                    <span>👥</span>
+                    <h3>Users</h3>
+                    <p>Manage registered users.</p>
+                </div>
+
+                <div class="admin-card-box">
+                    <span>📥</span>
+                    <h3>Deposits</h3>
+                    <p>Deposit management will be added in V2.</p>
+                </div>
+
+                <div class="admin-card-box">
+                    <span>📦</span>
+                    <h3>Packages</h3>
+                    <p>Investment packages will be added later.</p>
+                </div>
+
+                <div class="admin-card-box">
+                    <span>💸</span>
+                    <h3>Withdrawals</h3>
+                    <p>Withdrawal management will be added in V6.</p>
+                </div>
+
+                <div class="admin-card-box">
+                    <span>🎟️</span>
+                    <h3>Redeem Codes</h3>
+                    <p>Redeem-code controls will be added in V4.</p>
+                </div>
+
+                <div class="admin-card-box">
+                    <span>⚙️</span>
+                    <h3>Settings</h3>
+                    <p>System settings will be added later.</p>
+                </div>
+
+            </div>
+
+        </main>
+    </section>
+
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
